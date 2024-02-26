@@ -1,0 +1,15 @@
+name: Test openssl32
+on:
+  push:
+    branches: [ main ]
+jobs:
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.com/danigm/opensuse-openssl32-container
+    steps:
+      - name: Clone cheroot
+        run: git clone https://github.com/cherrypy/cheroot
+      - name: Run tox
+        run: tox
+        working-directory: ./cheroot
